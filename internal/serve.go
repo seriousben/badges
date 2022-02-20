@@ -19,7 +19,8 @@ const indexTmplString = `<html>
 <tr><td>Badge<td><img src="/badge?description=description" />
 <tr><td>Badge<td><img src="/badge?label=label" />
 <tr><td>Badge<td><img src="/badge?label=The quick brown fox jumps over the lazy dog&description=The quick brown fox jumps over the lazy dog" />
-<tr><td>Progress<td><img src="/progress?success_rate=0.75" />
+<tr><td>Progress<td><img src="/progress?rate=0.75" />
+<tr><td>Progress<td><img src="/progress?percent=75" />
 </table>
 </body>
 </html>`
@@ -85,9 +86,17 @@ func (s *badgesServer) serveBadge(w http.ResponseWriter, req *http.Request) {
 
 func (s *badgesServer) serveProgress(w http.ResponseWriter, req *http.Request) {
 	q := req.URL.Query()
-	successRate, err := strconv.ParseFloat(q.Get("success_rate"), 64)
+	successRate, err := strconv.ParseFloat(q.Get("rate"), 64)
 	if err != nil || successRate < 0 || successRate > 1 {
 		successRate = 0
+	}
+	if successRate == 0 {
+		percent, err := strconv.ParseFloat(q.Get("percent"), 64)
+		if err != nil || percent < 0 || percent > 100 {
+			successRate = 0
+		} else {
+			successRate = percent / 100
+		}
 	}
 	w.Header().Add("cache-control", "max-age=44640, immutable")
 	w.Header().Add("content-security-policy", "default-src 'none'; img-src data:")
