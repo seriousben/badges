@@ -74,7 +74,7 @@ func (s *badgesServer) serveRoot(w http.ResponseWriter, req *http.Request) {
 func (s *badgesServer) serveBadge(w http.ResponseWriter, req *http.Request) {
 	q := req.URL.Query()
 	// 30 days
-	w.Header().Add("cache-control", "max-age=44640, immutable")
+	w.Header().Add("cache-control", "max-age=2678400, immutable")
 	w.Header().Add("content-security-policy", "default-src 'none'; img-src data:")
 	w.Header().Add("content-type", "image/svg+xml;charset=utf-8")
 	err := renderBadge(w, q.Get("label"), q.Get("description"))
@@ -98,7 +98,7 @@ func (s *badgesServer) serveProgress(w http.ResponseWriter, req *http.Request) {
 			successRate = percent / 100
 		}
 	}
-	w.Header().Add("cache-control", "max-age=44640, immutable")
+	w.Header().Add("cache-control", "max-age=2678400, immutable")
 	w.Header().Add("content-security-policy", "default-src 'none'; img-src data:")
 	w.Header().Add("content-type", "image/svg+xml;charset=utf-8")
 	err = progressSvgTmpl.Execute(w, map[string]interface{}{
