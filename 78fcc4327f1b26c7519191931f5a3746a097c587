@@ -1,0 +1,19 @@
+mode: count
+github.com/seriousben/badges/cmd/badges/command.go:22.54,35.2 6 1
+github.com/seriousben/badges/cmd/badges/command.go:37.33,56.2 2 0
+github.com/seriousben/badges/cmd/badges/command.go:58.50,59.41 1 0
+github.com/seriousben/badges/cmd/badges/command.go:63.2,63.16 1 0
+github.com/seriousben/badges/cmd/badges/command.go:68.2,68.19 1 0
+github.com/seriousben/badges/cmd/badges/command.go:73.2,73.33 1 0
+github.com/seriousben/badges/cmd/badges/command.go:87.2,87.12 1 0
+github.com/seriousben/badges/cmd/badges/command.go:59.41,61.3 1 0
+github.com/seriousben/badges/cmd/badges/command.go:63.16,66.3 2 0
+github.com/seriousben/badges/cmd/badges/command.go:68.19,71.3 2 0
+github.com/seriousben/badges/cmd/badges/command.go:74.15,76.18 1 0
+github.com/seriousben/badges/cmd/badges/command.go:79.3,80.48 2 0
+github.com/seriousben/badges/cmd/badges/command.go:83.10,84.48 1 0
+github.com/seriousben/badges/cmd/badges/command.go:76.18,78.4 1 0
+github.com/seriousben/badges/cmd/badges/command.go:80.48,82.4 1 0
+github.com/seriousben/badges/cmd/badges/main.go:12.13,14.43 2 0
+github.com/seriousben/badges/cmd/badges/main.go:18.2,18.12 1 0
+github.com/seriousben/badges/cmd/badges/main.go:14.43,17.3 2 0
