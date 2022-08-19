@@ -6,7 +6,7 @@ import (
 	"log"
 	"os"
 
-	"github.com/seriousben/badges/internal"
+	"github.com/seriousben/badges/server"
 )
 
 type badgesCommand struct {
@@ -77,7 +77,7 @@ func (c *badgesCommand) Run(args []string) error {
 			return fmt.Errorf("-port flag required")
 		}
 		log.Println("Starting server")
-		if err := internal.Serve(c.Port); err != nil {
+		if err := server.Serve(c.Port); err != nil {
 			return err
 		}
 	default:
