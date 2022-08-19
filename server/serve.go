@@ -1,4 +1,4 @@
-package internal
+package server
 
 import (
 	"fmt"
@@ -43,13 +43,13 @@ aria-label="{{.title}}">
 var progressSvgTmpl = template.Must(template.New("progress").Parse(progressSvgTmplString))
 
 func Serve(port int) error {
-	server := &badgesServer{}
+	server := &BadgesServer{}
 	return http.ListenAndServe(fmt.Sprintf(":%d", port), server)
 }
 
-type badgesServer struct{}
+type BadgesServer struct{}
 
-func (s *badgesServer) ServeHTTP(w http.ResponseWriter, req *http.Request) {
+func (s *BadgesServer) ServeHTTP(w http.ResponseWriter, req *http.Request) {
 	mux := http.NewServeMux()
 	mux.HandleFunc("/badge", s.serveBadge)
 	mux.HandleFunc("/progress", s.serveProgress)
@@ -57,7 +57,7 @@ func (s *badgesServer) ServeHTTP(w http.ResponseWriter, req *http.Request) {
 	mux.ServeHTTP(w, req)
 }
 
-func (s *badgesServer) serveRoot(w http.ResponseWriter, req *http.Request) {
+func (s *BadgesServer) serveRoot(w http.ResponseWriter, req *http.Request) {
 	q := req.URL.Query()
 	// TODO: improve cachig with etag
 	w.Header().Add("cache-control", "no-cache")
@@ -71,7 +71,7 @@ func (s *badgesServer) serveRoot(w http.ResponseWriter, req *http.Request) {
 	}
 }
 
-func (s *badgesServer) serveBadge(w http.ResponseWriter, req *http.Request) {
+func (s *BadgesServer) serveBadge(w http.ResponseWriter, req *http.Request) {
 	q := req.URL.Query()
 	// 30 days
 	w.Header().Add("cache-control", "max-age=2678400, immutable")
@@ -84,7 +84,7 @@ func (s *badgesServer) serveBadge(w http.ResponseWriter, req *http.Request) {
 	}
 }
 
-func (s *badgesServer) serveProgress(w http.ResponseWriter, req *http.Request) {
+func (s *BadgesServer) serveProgress(w http.ResponseWriter, req *http.Request) {
 	q := req.URL.Query()
 	successRate, err := strconv.ParseFloat(q.Get("rate"), 64)
 	if err != nil || successRate < 0 || successRate > 1 {
