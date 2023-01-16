@@ -36,7 +36,6 @@ aria-label="{{.title}}">
 <g clip-path="url(#r)">
 	<rect width="{{ .successWidth }}" height="20" fill="#4c1" />
 	<rect x="{{ .successWidth }}" width="{{ .failWidth }}" height="20" fill="#9f9f9f" />
-	<rect width="{{.width}}" height="20" fill="url(#s)" />
 </g>
 </svg>`
 
