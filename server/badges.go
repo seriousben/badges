@@ -115,13 +115,13 @@ func sizeOfRune(c rune) float32 {
 		return 0
 	}
 
-	log.Println(fontSizeData[0])
+	// log.Println(fontSizeData[0])
 
 	i := sort.Search(len(fontSizeData), func(i int) bool { return fontSizeData[i].Char >= c })
 	if i < len(fontSizeData) {
 		return fontSizeData[i].Size
 	}
-	log.Println("not found code: ", c, " - ", i)
+	// log.Println("not found code: ", c, " - ", i)
 	return emSize
 }
 
